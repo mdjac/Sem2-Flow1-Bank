@@ -1,4 +1,7 @@
+import Entities.Customer;
+import Entities.Employee;
 import Entities.User;
+import Exceptions.AuthenticationException;
 import Utilities.Database;
 import Utilities.EncryptSHA1;
 import Utilities.PromtForAnswers;
@@ -10,7 +13,7 @@ public class Controller {
     Menu menu;
     Database productionDatabase;
     private int input;
-    private String username;
+    private User user;
 
     public Controller() {
         menu = new Menu();
@@ -23,13 +26,13 @@ public class Controller {
 
     public  void runCLI(){
         try {
-            displayCLI();
-        } catch (SQLException throwables) {
+            CLImainMenu();
+        } catch (Exception throwables) {
             throwables.printStackTrace();
         }
     }
 
-    private void displayCLI() throws SQLException {
+    private void CLImainMenu() throws SQLException, AuthenticationException {
         while (0 < 1) {
             menu.displayMainMenu();
             input = PromtForAnswers.promptForAnswerInt();
@@ -42,11 +45,64 @@ public class Controller {
                     break;
                 case 2:
                     System.out.println("Please enter Username followed by Password");
-                    User user = productionDatabase.validate_credentials(PromtForAnswers.promptForAnswerString(),EncryptSHA1.encryptThisString(PromtForAnswers.promptForAnswerString()));
+                    user = productionDatabase.validate_credentials(PromtForAnswers.promptForAnswerString(),EncryptSHA1.encryptThisString(PromtForAnswers.promptForAnswerString()));
                     System.out.println("You are now logged in with: "+user.getUsername());
                     user.test();
+                    if(user instanceof Employee){
+                        CLIemployeeMenu();
+                    }
+                    if(user instanceof Customer){
+                        CLIcustomerMenu();
+                    }
                     break;
             }
         }
     }
+
+    private void CLIcustomerMenu() throws SQLException, AuthenticationException {
+        while (0 < 1) {
+            menu.displayCustomerMenu();
+            input = PromtForAnswers.promptForAnswerInt();
+            switch (input) {
+                case -1:
+                    //Logout
+                    user = null;
+                    CLImainMenu();
+                case 1:
+                    //TODO : Must show transactions
+                    break;
+                case 2:
+                    //TODO : Must deposit transactions
+                    break;
+                case 3:
+                    //TODO : Must withdraw transactions
+                    break;
+                case 4:
+                    //TODO : Must transfer
+                    break;
+            }
+        }
+    }
+    private void CLIemployeeMenu() throws SQLException, AuthenticationException {
+        while (0 < 1) {
+            menu.displayEmployeeMenu();
+            input = PromtForAnswers.promptForAnswerInt();
+            switch (input) {
+                case -1:
+                    //Logout
+                    user = null;
+                    CLImainMenu();
+                case 1:
+                    //TODO : Must show transactions
+                    break;
+                case 2:
+                    //TODO : Show customers
+                    break;
+                case 3:
+                    //TODO : Transfer
+                    break;
+            }
+        }
+    }
+
 }

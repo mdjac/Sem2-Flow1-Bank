@@ -8,3 +8,10 @@
 11:29:5 Login from username: Mikkel
 11:58:4 Login from username: Mikkel
 12:11:58 Login from username: Mathias
+12:17:13 Failed login from username: fail
+12:50:51 Login from username: test
+13:5:8 Login from username: test1
+13:5:21 Login from username: test
+13:6:3 Login from username: test
+13:6:13 Login from username: test1
+13:9:34 Login from username: test
