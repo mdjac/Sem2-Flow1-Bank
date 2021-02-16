@@ -3696,6 +3696,7 @@
 											"model": {
 												"$ref": "AAAAAAF3qiIHb69/ZCo="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 125,
 											"top": 636,
@@ -3715,7 +3716,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 125,
-											"top": 651,
+											"top": 636,
 											"width": 143,
 											"height": 13,
 											"text": "+Adresse",
@@ -3726,7 +3727,7 @@
 									"left": 120,
 									"top": 601,
 									"width": 153,
-									"height": 68
+									"height": 53
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -3749,7 +3750,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 125,
-											"top": 674,
+											"top": 659,
 											"width": 143,
 											"height": 13,
 											"text": "+TransferMoney()",
@@ -3766,7 +3767,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 125,
-											"top": 689,
+											"top": 674,
 											"width": 143,
 											"height": 13,
 											"text": "+ShowTransactions()",
@@ -3775,7 +3776,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 120,
-									"top": 669,
+									"top": 654,
 									"width": 153,
 									"height": 38
 								},
@@ -3877,7 +3878,7 @@
 											"top": 735,
 											"width": 122.70654296875,
 											"height": 13,
-											"text": "Entities.Customer"
+											"text": "Customer"
 										},
 										{
 											"_type": "LabelView",
@@ -3949,7 +3950,7 @@
 											"top": 758,
 											"width": 122.70654296875,
 											"height": 13,
-											"text": "+Entities.Account object",
+											"text": "+Account object",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4355,7 +4356,7 @@
 											"top": 887,
 											"width": 95,
 											"height": 13,
-											"text": "Entities.Account"
+											"text": "Account"
 										},
 										{
 											"_type": "LabelView",
@@ -6763,7 +6764,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Entities.Customer",
+					"name": "Customer",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -6800,7 +6801,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF3qiOnTbxd5DU="
 							},
-							"name": "Entities.Account object"
+							"name": "Account object"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6871,7 +6872,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Entities.Account",
+					"name": "Account",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
