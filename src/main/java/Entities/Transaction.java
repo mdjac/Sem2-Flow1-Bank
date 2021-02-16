@@ -5,9 +5,9 @@ import java.util.Date;
 public class Transaction {
 
     private int amount;
-    private Date date;
+    private String date;
 
-    public Transaction(int amount, Date date) {
+    public Transaction(int amount, String date) {
         this.amount = amount;
         this.date = date;
     }
@@ -16,7 +16,15 @@ public class Transaction {
         return amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "amount=" + amount +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

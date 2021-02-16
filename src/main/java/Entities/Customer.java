@@ -1,10 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import java.util.Objects;
 
 public class Customer extends User {
 
-    private Account myAccount;
+    public Account myAccount;
 
     public Customer(String name, String username, String address, Account myAccount) {
         super(name, username, address);

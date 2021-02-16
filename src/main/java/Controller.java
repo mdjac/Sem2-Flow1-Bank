@@ -52,6 +52,9 @@ public class Controller {
                         CLIemployeeMenu();
                     }
                     if(user instanceof Customer){
+                        ((Customer) user).myAccount.test();
+                        System.out.println(((Customer) user).myAccount.getBalance());
+                        System.out.println(((Customer) user).myAccount.getTransactions());
                         CLIcustomerMenu();
                     }
                     break;

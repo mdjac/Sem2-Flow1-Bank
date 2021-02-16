@@ -11,8 +11,8 @@ public class Account {
 
     private List<Transaction> transactions;
 
-    public Account() {
-        this.transactions = new ArrayList<>();
+    public Account(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public int getBalance(){
@@ -31,17 +31,21 @@ public class Account {
         } else if (amount <= 0) {
             throw new BankException("Du kan ikke hæve et beløb som er 0 eller negativt");
         }
-        transactions.add(new Transaction(-amount, new Date() ));
+        transactions.add(new Transaction(-amount,""));
         return getBalance() ;
     }
 
-    public int depositAmount(int amount){
+    public int depositAmount(int amount, String date){
         // TODO: skal debugges og returnere ny saldo. Smid fejl hvis amount < 0.
-        transactions.add(new Transaction(amount, new Date()));
+        transactions.add(new Transaction(amount,date));
         return getBalance();
     }
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public void test (){
+        System.out.println("This is an account");
     }
 }

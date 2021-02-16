@@ -1,12 +1,11 @@
 package Utilities;
 
-import Entities.Customer;
-import Entities.Employee;
-import Entities.User;
+import Entities.*;
 import Exceptions.AuthenticationException;
 import Logging.LogFile;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Database implements AutoCloseable {
     private final String db_url;
@@ -17,6 +16,7 @@ public class Database implements AutoCloseable {
     private PreparedStatement ps_create_user;
     private PreparedStatement ps_validate_credentials;
     private PreparedStatement ps_create_account;
+    private PreparedStatement ps_get_transactions;
 
     public Database(String db_url, String db_user, String db_password) throws SQLException
     {
@@ -37,6 +37,7 @@ public class Database implements AutoCloseable {
         ps_create_user = con.prepareStatement(   "INSERT INTO Users (username,password,name,address,userType_id) VALUES(?,?,?,?,?)");
         ps_validate_credentials = con.prepareStatement(   "SELECT * from Users where Username = ? and Password = ?");
         ps_create_account = con.prepareStatement(   "INSERT INTO account (username) values (?)");
+        ps_get_transactions = con.prepareStatement(   "select transactions.amount, transactions.dt from account join Users on account.username = Users.username join transactions on account.id = transactions.account_id where account.username = ?");
     }
 
     public boolean create_user (String username, String password, int type, String name, String address) throws SQLException {
@@ -78,7 +79,7 @@ public class Database implements AutoCloseable {
                     }
                     else
                     {
-                        user = new Customer(rs_name,rs_username,rs_address);
+                        user = new Customer(rs_name,rs_username,rs_address, new Account(get_transactions(rs_username)));
                     }
                     return user;
                 }
@@ -101,5 +102,25 @@ public class Database implements AutoCloseable {
             e.printStackTrace();
         }
         return true;
+    }
+    public ArrayList<Transaction> get_transactions(String username) throws SQLException {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        try
+        {
+          ps_get_transactions.setString(1,username);
+            try(ResultSet rs = ps_get_transactions.executeQuery())
+            {
+                while (rs.next()){
+                    int rs_amount = rs.getInt(1);
+                    String rs_date = rs.getString(2);
+                    Transaction transaction = new Transaction(rs_amount,rs_date);
+                    transactions.add(transaction);
+                }
+            }
+            return transactions;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        throw new SQLException("Failed to retrieve transactions for user: " +username);
     }
 }
