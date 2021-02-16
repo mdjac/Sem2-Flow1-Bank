@@ -1,3 +1,6 @@
+import Entities.Account;
+import Entities.Customer;
+import Exceptions.BankException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +15,8 @@ class AccountTest {
     // Arrange
     @BeforeEach
     void setUp() {
-        customer1 = new Customer("Jon");
-        account1 = new Account(customer1);
+        //customer1 = new Customer("Jon");
+        //account1 = new Account(customer1);
     }
 
     @Test

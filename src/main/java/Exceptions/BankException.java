@@ -1,4 +1,4 @@
-
+package Exceptions;
 // Jons hjemmebryggede exception klasse
 
 public class BankException extends Exception {
