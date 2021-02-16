@@ -20,8 +20,4 @@ public class Employee extends User{
     public ArrayList<Customer> showCustomers(){
         return new ArrayList<>();
     }
-
-    public void test(){
-        System.out.println("Im an employee");
-    }
 }

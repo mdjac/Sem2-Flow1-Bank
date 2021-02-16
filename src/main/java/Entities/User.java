@@ -22,8 +22,4 @@ public class User {
     public ArrayList<Transaction> showTransactions(){
         return  new ArrayList<>();
     }
-
-    public void test(){
-        System.out.println("Im a user");
-    }
 }

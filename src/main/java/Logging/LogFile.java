@@ -36,7 +36,6 @@ public abstract class LogFile {
             FileWriter myWriter = new FileWriter(filename, true);
             myWriter.write(""+localdatetime.getHour()+ ":" +localdatetime.getMinute()+":"+localdatetime.getSecond()+" "+ logMessage + System.lineSeparator());
             myWriter.close();
-            System.out.println("Wrote to LogFile");
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();

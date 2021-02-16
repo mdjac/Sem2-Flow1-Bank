@@ -11,6 +11,7 @@ public class Menu {
         System.out.println("2  : Deposit");
         System.out.println("3  : Withdraw");
         System.out.println("4  : Transfer");
+        System.out.println("5  : Show current balance");
         System.out.println("-1  : Logout");
     }
     public void displayEmployeeMenu(){

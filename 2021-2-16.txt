@@ -21,3 +21,24 @@
 14:42:32 Login from username: bruger1
 14:43:41 Login from username: bruger1
 14:44:8 Login from username: bruger1
+14:47:15 Login from username: bruger1
+14:52:4 Login from username: bruger1
+15:14:9 Login from username: bruger1
+15:21:29 Login from username: bruger1
+15:22:28 Login from username: bruger1
+15:22:44 Login from username: bruger1
+15:24:12 Login from username: bruger1
+15:24:40 Login from username: bruger1
+15:25:18 Login from username: bruger1
+15:26:29 Login from username: bruger1
+15:28:57 Login from username: bruger1
+15:33:55 Login from username: bruger1
+15:34:17 Failed login from username: bruger
+15:34:32 Login from username: bruger1
+15:38:11 Login from username: bruger1
+15:38:23 Login from username: bruger1
+15:43:15 Login from username: bruger1
+15:47:35 Login from username: bruger1
+15:48:10 Login from username: bruger1
+15:49:33 Login from username: bruger1
+15:53:3 Login from username: bruger1

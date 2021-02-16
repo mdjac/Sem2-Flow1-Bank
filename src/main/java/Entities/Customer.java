@@ -26,9 +26,4 @@ public class Customer extends User {
         return Objects.equals(getName(), customer.getName());
     }
 
-    @Override
-    public void test(){
-        System.out.println("Im a customer");
-    }
-
 }

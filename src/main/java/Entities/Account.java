@@ -8,11 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 public class Account {
-
+    private int accountID;
     private List<Transaction> transactions;
 
-    public Account(ArrayList<Transaction> transactions) {
+    public Account(ArrayList<Transaction> transactions,int accountID) {
         this.transactions = transactions;
+        this.accountID = accountID;
     }
 
     public int getBalance(){
@@ -45,7 +46,11 @@ public class Account {
         return transactions;
     }
 
-    public void test (){
-        System.out.println("This is an account");
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }
