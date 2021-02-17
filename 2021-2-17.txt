@@ -28,3 +28,8 @@
 10:6:32 Login from username: employee
 10:12:0 Login from username: bruger1
 10:12:9 Your balance is too low to withdraw: 100
+10:19:50 Login from username: employee
+10:20:25 Failed login from username: employee
+10:20:25 Failed to login with username: employee
+10:20:32 Login from username: employee
+10:22:40 Login from username: employee

@@ -44,7 +44,7 @@ public class Database implements AutoCloseable {
         ps_get_transactions = con.prepareStatement(   "select transactions.amount, transactions.dt from account join Users on account.username = Users.username join transactions on account.id = transactions.account_id where account.username LIKE ?");
         ps_depositOrWithdraw_transactions = con.prepareStatement(   "insert into transactions (account_id,amount) values (?,?)");
         ps_check_for_accountID = con.prepareStatement(   "SELECT * from account where id = ?");
-        ps_list_all_customers = con.prepareStatement(   "select Users.username, Users.name, Users.address, account.id from account join Users on account.username = Users.username");
+        ps_list_all_customers = con.prepareStatement(   "select Users.username, Users.name, Users.address, account.id from account join Users on account.username = Users.username ORDER BY name asc");
     }
 
     public boolean create_user (String username, String password, int type, String name, String address) throws SQLException {
