@@ -41,7 +41,7 @@ public class Database implements AutoCloseable {
         ps_create_user = con.prepareStatement(   "INSERT INTO Users (username,password,name,address,userType_id) VALUES(?,?,?,?,?)");
         ps_validate_credentials = con.prepareStatement(   "SELECT * from Users left join account on Users.username = account.username where Users.username = ? and Users.password = ?");
         ps_create_account = con.prepareStatement(   "INSERT INTO account (username) values (?)");
-        ps_get_transactions = con.prepareStatement(   "select transactions.amount, transactions.dt from account join Users on account.username = Users.username join transactions on account.id = transactions.account_id where account.username = ?");
+        ps_get_transactions = con.prepareStatement(   "select transactions.amount, transactions.dt from account join Users on account.username = Users.username join transactions on account.id = transactions.account_id where account.username LIKE ?");
         ps_depositOrWithdraw_transactions = con.prepareStatement(   "insert into transactions (account_id,amount) values (?,?)");
         ps_check_for_accountID = con.prepareStatement(   "SELECT * from account where id = ?");
         ps_list_all_customers = con.prepareStatement(   "select Users.username, Users.name, Users.address, account.id from account join Users on account.username = Users.username");
@@ -113,6 +113,9 @@ public class Database implements AutoCloseable {
     }
     public ArrayList<Transaction> get_transactions(String username) throws SQLException {
         ArrayList<Transaction> transactions = new ArrayList<>();
+        if (username.equals("ALL")){
+            username = "%";
+        }
         try
         {
           ps_get_transactions.setString(1,username);
