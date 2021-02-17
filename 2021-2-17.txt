@@ -1,0 +1,25 @@
+9:21:40 Failed login from username: test1
+9:21:58 Failed login from username: test1
+9:22:5 Login from username: bruger1
+9:22:34 Failed login from username: employee
+9:22:51 Login from username: test
+9:23:6 Failed login from username: employee
+9:24:14 Failed login from username: employee
+9:24:38 Failed login from username: employee
+9:30:19 Login from username: employee
+9:31:7 Login from username: employee
+9:32:5 Login from username: employee
+9:35:9 Login from username: bruger1
+9:36:2 Login from username: employee
+9:36:54 Login from username: employee
+9:37:28 Login from username: employee
+9:41:56 Login from username: employee
+9:43:29 Login from username: employee
+9:43:37 Login from username: bruger1
+9:55:52 Login from username: bruger1
+9:56:3 Login from username: test
+9:56:12 Login from username: employee
+9:56:55 Login from username: bruger1
+9:56:59 Login from username: test
+9:57:7 Login from username: employee
+9:58:11 Login from username: employee

@@ -1,3 +1,4 @@
+import Entities.Account;
 import Entities.Customer;
 import Entities.Employee;
 import Entities.User;
@@ -5,14 +6,15 @@ import Exceptions.AuthenticationException;
 import Exceptions.BankException;
 import Utilities.Database;
 import Utilities.EncryptSHA1;
+import Utilities.Prints;
 import Utilities.PromtForAnswers;
 
 import java.sql.SQLException;
 
 
 public class Controller {
-    Menu menu;
-    Database productionDatabase;
+    private Menu menu;
+    private Database productionDatabase;
     private int input;
     private User user;
 
@@ -71,7 +73,7 @@ public class Controller {
                         user = null;
                         CLImainMenu();
                     case 1:
-                        System.out.println(((Customer) user).myAccount.getTransactions());
+                        Prints.printTransactionsArrayList(((Customer) user).myAccount.getTransactions());
                         break;
                     case 2:
                         System.out.println("Please insert deposit amount (as Integer)");
@@ -90,10 +92,11 @@ public class Controller {
                         int amount = PromtForAnswers.promptForAnswerInt();
                         int receiverAccountID = PromtForAnswers.promptForAnswerInt();
                         if (productionDatabase.check_for_accountID(receiverAccountID)) {
-                            productionDatabase.withdraw_transactions(((Customer) user).myAccount.getAccountID(), amount, ((Customer) user).myAccount.getBalance());
-                            productionDatabase.deposit_transactions(receiverAccountID, amount);
-                            ((Customer) user).myAccount.setTransactions(productionDatabase.get_transactions(user.getUsername()));
-                            System.out.println("Your balance is now: " + ((Customer) user).myAccount.getBalance());
+                            if(productionDatabase.withdraw_transactions(((Customer) user).myAccount.getAccountID(), amount, ((Customer) user).myAccount.getBalance())){
+                                productionDatabase.deposit_transactions(receiverAccountID, amount);
+                                ((Customer) user).myAccount.setTransactions(productionDatabase.get_transactions(user.getUsername()));
+                                System.out.println("Your balance is now: " + ((Customer) user).myAccount.getBalance());
+                            }
                         }
                         else {
                             System.out.println("The entered receivers accountID doesnt exist");
@@ -116,13 +119,30 @@ public class Controller {
                         user = null;
                         CLImainMenu();
                     case 1:
-                        //TODO : Must show transactions
+                        System.out.println("Please enter username of the customer you want to see transactions for or enter ALL if you want to see all transactions");
+                        Prints.printTransactionsArrayList(productionDatabase.get_transactions(PromtForAnswers.promptForAnswerString()));
                         break;
                     case 2:
-                        //TODO : Show customers
+                        System.out.println(productionDatabase.list_all_customers());
                         break;
                     case 3:
-                        //TODO : Transfer
+                        //Used to calculate balance is ok for the sent amount
+                        Account tempAccount;
+                        System.out.println("Please enter amount, senders username, senders accountID and receivers accountID");
+                        int amount = PromtForAnswers.promptForAnswerInt();
+                        String senderUsername = PromtForAnswers.promptForAnswerString();
+                        int senderAccountID = PromtForAnswers.promptForAnswerInt();
+                        int receiverAccountID = PromtForAnswers.promptForAnswerInt();
+                        if (productionDatabase.check_for_accountID(senderAccountID) && productionDatabase.check_for_accountID(receiverAccountID)) {
+                            tempAccount = new Account(productionDatabase.get_transactions(senderUsername), senderAccountID);
+                            if(productionDatabase.withdraw_transactions(senderAccountID, amount, tempAccount.getBalance())){
+                                productionDatabase.deposit_transactions(receiverAccountID, amount);
+                            }
+
+                        }
+                        else {
+                            System.out.println("The entered sender or receivers accountID doesnt exist");
+                        }
                         break;
                 }
             }

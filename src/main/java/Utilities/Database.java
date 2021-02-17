@@ -20,6 +20,7 @@ public class Database implements AutoCloseable {
     private PreparedStatement ps_get_transactions;
     private PreparedStatement ps_depositOrWithdraw_transactions;
     private PreparedStatement ps_check_for_accountID;
+    private PreparedStatement ps_list_all_customers;
 
     public Database(String db_url, String db_user, String db_password) throws SQLException
     {
@@ -38,11 +39,12 @@ public class Database implements AutoCloseable {
     {
         con = DriverManager.getConnection(db_url, db_user, db_password);
         ps_create_user = con.prepareStatement(   "INSERT INTO Users (username,password,name,address,userType_id) VALUES(?,?,?,?,?)");
-        ps_validate_credentials = con.prepareStatement(   "SELECT * from Users join account on Users.username = account.username where Users.username = ? and Users.password = ?");
+        ps_validate_credentials = con.prepareStatement(   "SELECT * from Users left join account on Users.username = account.username where Users.username = ? and Users.password = ?");
         ps_create_account = con.prepareStatement(   "INSERT INTO account (username) values (?)");
         ps_get_transactions = con.prepareStatement(   "select transactions.amount, transactions.dt from account join Users on account.username = Users.username join transactions on account.id = transactions.account_id where account.username = ?");
         ps_depositOrWithdraw_transactions = con.prepareStatement(   "insert into transactions (account_id,amount) values (?,?)");
         ps_check_for_accountID = con.prepareStatement(   "SELECT * from account where id = ?");
+        ps_list_all_customers = con.prepareStatement(   "select Users.username, Users.name, Users.address, account.id from account join Users on account.username = Users.username");
     }
 
     public boolean create_user (String username, String password, int type, String name, String address) throws SQLException {
@@ -179,4 +181,25 @@ public class Database implements AutoCloseable {
         }
         return false;
     }
+
+    public String list_all_customers () throws SQLException {
+        try {
+            StringBuilder result = new StringBuilder();
+            try(ResultSet rs = ps_list_all_customers.executeQuery())
+            {
+                while (rs.next()){
+                    String rs_username =  rs.getString(1);
+                    String rs_name = rs.getString(2);
+                    String rs_address = rs.getString(3);
+                    int rs_accountID = rs.getInt(4);
+                    result.append("Username: "+rs_username+"\tName: "+rs_name+"\tAddress: "+rs_address+"\tAccountID: "+rs_accountID+"\n");
+                }
+                return result.toString();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        throw new SQLException("Could not retrieve list of customers from database");
+    }
+
 }
