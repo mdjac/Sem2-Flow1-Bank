@@ -26,3 +26,5 @@
 10:5:12 Login from username: bruger1
 10:5:36 Login from username: employee
 10:6:32 Login from username: employee
+10:12:0 Login from username: bruger1
+10:12:9 Your balance is too low to withdraw: 100

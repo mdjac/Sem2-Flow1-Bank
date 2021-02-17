@@ -25,23 +25,6 @@ public class Account {
         return sum;
     }
 
-    public int withDrawAmount(int amount) throws BankException {
-        // TODO: skal kodes og returnere ny saldo. Smid fejl hvis amount > saldo
-        if (getBalance() < amount){
-            throw new BankException("Du forsøger at hæve et beløb som er større end din saldo");
-        } else if (amount <= 0) {
-            throw new BankException("Du kan ikke hæve et beløb som er 0 eller negativt");
-        }
-        transactions.add(new Transaction(-amount,""));
-        return getBalance() ;
-    }
-
-    public int depositAmount(int amount, String date){
-        // TODO: skal debugges og returnere ny saldo. Smid fejl hvis amount < 0.
-        transactions.add(new Transaction(amount,date));
-        return getBalance();
-    }
-
     public List<Transaction> getTransactions() {
         return transactions;
     }

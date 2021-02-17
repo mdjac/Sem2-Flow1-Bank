@@ -16,10 +16,6 @@ public class Transaction {
         return amount;
     }
 
-    public String getDate() {
-        return date;
-    }
-
     @Override
     public String toString() {
         return "Transaction{" +

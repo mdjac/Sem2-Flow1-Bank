@@ -7,17 +7,4 @@ public class Employee extends User{
         super(name, username, address);
     }
 
-    @Override
-    public boolean transferMoney() {
-        return super.transferMoney();
-    }
-
-    @Override
-    public ArrayList<Transaction> showTransactions() {
-        return super.showTransactions();
-    }
-
-    public ArrayList<Customer> showCustomers(){
-        return new ArrayList<>();
-    }
 }

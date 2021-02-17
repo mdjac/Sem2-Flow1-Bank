@@ -15,11 +15,4 @@ public class User {
         this.username = username;
         this.address = address;
     }
-
-    public boolean transferMoney(){
-        return true;
-    }
-    public ArrayList<Transaction> showTransactions(){
-        return  new ArrayList<>();
-    }
 }
